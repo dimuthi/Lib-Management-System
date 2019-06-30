@@ -1,0 +1,111 @@
+<!-- Navigation -->
+<nav class="navbar navbar-dark bg-dark">
+  <span class="navbar-brand mb-0 h1">Library Management System</span>
+</nav>
+
+<!-- Toolbar -->
+<nav class="navbar navbar-light bg-light justify-content-center">
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNewBookModalCenter" (click)="addBookUi()">Add New
+    Book
+  </button>
+</nav>
+
+<!-- Book list table -->
+<div class="container table-container">
+  <table class="table">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">ISBN Number</th>
+      <th scope="col">Book Title</th>
+      <th scope="col">Author</th>
+      <th scope="col">Type</th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let book of books">
+      <td>{{book.isbn}}</td>
+      <td>{{book.book_name}}</td>
+      <td>{{book.author_name}}</td>
+      <td>{{book.type}}</td>
+      <td><i class="material-icons" data-toggle="tooltip" data-placement="right" title="Delete" (click)="deleteBook(book)"
+             style="color: red;">delete</i></td>
+      <td><i class="material-icons" data-placement="right" title="Edit" data-toggle="modal" data-target="#addNewBookModalCenter" (click)="updateBookUi(book)">edit</i></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Add New Book Modal -->
+<div class="modal fade" id="addNewBookModalCenter" tabindex="-1" role="dialog"
+     aria-labelledby="addNewBookModalCenterTitle"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addNewBookModalCenterTitle">Add New Book</h5>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="isbnNo">ISBN Number</label>
+            <input type="text" class="form-control" name="isbnNo" [(ngModel)]="book.isbn">
+          </div>
+          <div class="form-group">
+            <label for="bookTitle">Book Title</label>
+            <input type="text" class="form-control" name="bookTitle" [(ngModel)]="book.book_name">
+          </div>
+          <div class="form-group">
+            <label for="author">Author</label>
+            <input type="text" class="form-control" name="author" [(ngModel)]="book.author_name">
+          </div>
+          <div class="form-group">
+            <label for="type">Type</label>
+            <input type="text" class="form-control" name="type" [(ngModel)]="book.type">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" (click)="addBook(btnSubmitObj)" #btnSubmitObj>{{btnSubmit}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Book Modal -->
+<div class="modal fade" id="editBookModalCenter" tabindex="-1" role="dialog" aria-labelledby="editBookModalCenterTitle"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editBookModalCenterTitle">Edit Book</h5>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="isbnNo">ISBN Number</label>
+            <input type="text" class="form-control" id="isbnNo">
+          </div>
+          <div class="form-group">
+            <label for="bookTitle">Book Title</label>
+            <input type="text" class="form-control" id="bookTitle">
+          </div>
+          <div class="form-group">
+            <label for="author">Author</label>
+            <input type="text" class="form-control" id="author">
+          </div>
+          <div class="form-group">
+            <label for="type">Type</label>
+            <input type="text" class="form-control" id="type">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>
